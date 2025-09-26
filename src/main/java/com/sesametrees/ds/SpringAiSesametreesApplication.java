@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringAiSesametreesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringAiSesametreesApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringAiSesametreesApplication.class, args);
+    }
 
 }
