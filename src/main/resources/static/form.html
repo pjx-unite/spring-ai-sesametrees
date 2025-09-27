@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    .center-grid {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+    }
+
+    .form-box {
+        width: 320px;
+    }
+
+    .right-pane {
+        text-align: right;
+        margin-left: 50px;
+        margin-right: 500px;
+        justify-self: stretch;
+        padding: 12px;
+        max-height: 70vh;
+        overflow: auto; /* scroll if long */
+        white-space: pre-wrap; /* wrap long lines while keeping pre formatting */
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>sesametrees</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        async function loadStability() {
+            const message = document.getElementById("message").value;
+            const res = await fetch('/text2ImageV2', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `message=${encodeURIComponent(message)}`
+            });
+            if (!res.ok) throw new Error('Request failed');
+            const model = await res.json(); // { level: "...", message: "..." }
+            document.getElementById('imageUrl').innerHTML = `<img src="${model.url}" alt="Result" style="max-width:80%;height:80%;">`;
+            document.getElementById('prompt').innerHTML = model.prompt;
+        }
+
+        loadStability();
+    </script>
+</head>
+
+<body>
+<h1>sesametrees</h1>
+
+<div class="center-grid">
+    <dev class="right-pane">
+        <pre id="prompt"></pre>
+    </dev>
+    <pre id="imageUrl"></pre>
+    <form onsubmit="event.preventDefault(); loadStability();">
+        <label for="message">Enter your message:</label>
+        <input type="text" id="message" name="message" required
+               style="width: 933.004px; height: 83.992px; padding: 8px 12px; box-sizing: border-box;">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>
