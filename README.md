@@ -4,7 +4,7 @@
 <img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
 
 [Spring AI Sesametrees] 是一款以 Spring AI 为基础，无需依赖任何平台，全部开源，开箱即用，支持 ChatBot的 AI 框架。
-
+[Sentinel] 流量控制，提高系统的稳定性。
 
 ## 快速开始
 
