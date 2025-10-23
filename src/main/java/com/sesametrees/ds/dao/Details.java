@@ -5,7 +5,7 @@ public class Details {
     private String message;
 
     public String getMessage() {
-        return "https://localhost:8080/files/" + message;
+        return "https://573d19cfb01b.ngrok-free.app/files/" + message;
     }
     public void setMessage(String message) {
         this.message = message;

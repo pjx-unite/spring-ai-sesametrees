@@ -1,5 +1,6 @@
 package com.sesametrees.ds.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.sesametrees.ds.dao.Stability;
 import com.sesametrees.ds.server.StabilityClient;
 import org.springframework.ai.chat.client.ChatClient;
@@ -19,14 +20,14 @@ public class DeepSeekController {
     public DeepSeekController(@Qualifier("openAiChatClient") ChatClient chatClient) {
         this.chatClient = chatClient;
     }
-
+    @SentinelResource("stability")
     @PostMapping("/text2ImageV2")
     public Stability stabilityUltra(@RequestParam String message) {
         System.out.println(message);
         String trans = "An 18-year-old prohibited from viewing image.";
         try {
             trans = chatClient.prompt()
-                    .user(message + " Translate this sentence into English.")
+                    .user(message + ", If this sentence contains Chinese characters, translate it into English; otherwise, output the original text.")
                     .call()
                     .content();
         } catch (Exception e) {

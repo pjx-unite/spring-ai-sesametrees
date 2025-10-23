@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Allow all paths
-                .allowedOrigins("http://localhost:8080", "https://41bd15b223ea.ngrok-free.app") // Allowed origins
+                .allowedOrigins("http://localhost:8080", "https://573d19cfb01b.ngrok-free.app") // Allowed origins
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // Allowed HTTP methods
                 .allowedHeaders("*") // Allowed headers
                 .allowCredentials(true); // Allow credentials such as cookies
@@ -21,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/files/**")
-                .addResourceLocations("file:/PycharmProjects/FastAPIProject/") // absolute dir
+                .addResourceLocations("file:/usr/local/stability-image/FastAPIProject/") // absolute dir
                 .setCachePeriod(3600);
     }
 }
